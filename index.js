@@ -1,4 +1,3 @@
-// DOM tanımlamaları
 const todoContainerDOM = document.getElementById("todoContainer");
 const inputNameContainerDOM = document.getElementById("inputNameContainer");
 const inputNameDOM = document.getElementById("inputName");
@@ -6,10 +5,9 @@ const darkModeDOM = document.getElementById("darkMode");
 const userNameDOM = document.getElementById("userName");
 const backPageButtonDOM = document.getElementById("backPageButton");
 const inputTodoDOM = document.getElementById("inputTodo");
+const spinner = document.getElementById("spinner");
 
-// Sayfa açıldığında önceden todo kullanılmış mı kontrol edilir
-// Eğer önceden kullanıdı ise kullanıcı tercihleri ekrana yansır
-// ve isim isteme alanı gizlenir, todo alanı ekranı yansır
+// Sayfa kullanıcının geçmiş kullanım ve terchine göre görüntülenir
 window.onload = function () {
   if (localStorage.getItem("name") === null) {
     inputNameContainerDOM.style.display = "block";
@@ -44,13 +42,13 @@ const darkMode = () => {
   }
 };
 
-// Kullanıcıdan isim alındığı sayfaya geri dönülür
+// Sayfa varsayılan haline geri döner
 const backPage = () => {
   localStorage.removeItem("name");
   window.location.href = "index.html";
 };
 
-// dark-light modu listener
+// Dark-Light modu için switch dinlenir
 darkModeDOM.addEventListener("change", () => {
   if (darkModeDOM.checked === true) {
     localStorage.setItem("darkmode", true);
@@ -69,11 +67,17 @@ darkModeDOM.addEventListener("change", () => {
 
 // fetch işlemi
 async function fetchTodos() {
+  spinner.removeAttribute("hidden");
   const response = await fetch(
     "https://61c378639cfb8f0017a3eb9c.mockapi.io/todos"
   );
   todoList(await response.json());
 }
+
+fetchTodos().then((data) => {
+  console.log("hey");
+  spinner.setAttribute("hidden", "");
+});
 
 // Todo ekleme
 function addTodo() {
@@ -115,7 +119,7 @@ const completedTodo = (id, checked) => {
   }).then((response) => fetchTodos());
 };
 
-// todo içeriği değiştirme
+// Todo içeriği değiştirme
 const changeTodo = (id) => {
   let todoContent = document.getElementById(`todoContent${id}`);
 
@@ -136,9 +140,7 @@ const changeTodo = (id) => {
   todoContent.setAttribute("readonly", "readonly");
 };
 
-// todo görüntülenir
-// kullanıcı tercihleri yüklenir
-// todo'lar listenenir
+// Todo görüntülenir
 const todoDisplay = () => {
   if (inputNameDOM.value !== "") {
     inputNameContainerDOM.style.display = "none";
@@ -152,8 +154,7 @@ const todoDisplay = () => {
   }
 };
 
-// edit butonu gizlenir, kaydet butonu gelir
-// input edit odaklanır
+// Input içeriğini kaydetme ve düzenleme
 const hideEditButton = (id) => {
   let editButton = document.getElementById(`editButton${id}`);
   let saveButton = document.getElementById(`saveButton${id}`);
@@ -166,7 +167,7 @@ const hideEditButton = (id) => {
   todoContent.setSelectionRange(length, length);
 };
 
-// todo'lar listenenir
+// Todo'lar listelenir
 const todoList = (todos) => {
   todos.length < 6
     ? (todoContainerDOM.childNodes[3].style.height = "auto")
