@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- #F5F5F5, #F05454, #30475E, #121212-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header id="header">
+        <div class="name-container">
+            <button id="backPageButton" onclick="backPage()"><i class="fa fa-arrow-left fa-2x"></i> </button>
+            <h1 id="userName">&nbsp;</h1>
+        </div>
+        <div class="switch-container">
+            <p>GÜNDÜZ/GECE MODU</p>
+            <label class="switch">
+                <input type="checkbox" id="darkMode">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </header>
+    <main>
+        <article id="inputNameContainer">
+            <header>
+                <h2>Hoşgeldiniz, adınız nedir?</h2>
+            </header>
+            <section>
+                <input type="text" placeholder="Adınızı giriniz..." id="inputName">
+                <button onclick="todoDisplay()">Devam Et <i class="fa fa-arrow-circle-right"></i></button>
+            </section>
+        </article>
+        <article id="todoContainer">
+            <header>
+                <input type="text" placeholder="bir şeyler yazınız..." id="inputTodo">
+                <button onclick="addTodo()">Ekle</button>
+            </header>
+            <section>
+                <div hidden id="spinner"></div>
+            </section>
+        </article>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>

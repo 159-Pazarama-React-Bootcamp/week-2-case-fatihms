@@ -1,0 +1,324 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #30475e;
+  height: 100vh;
+  width: 100vw;
+}
+
+#header {
+  padding: 20px 30px;
+  width: 100%;
+  background-color: #f05454;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#backPageButton {
+  display: none;
+  background-color: transparent;
+  border-color: transparent;
+  color: #121212;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+#backPageButton > i:hover {
+  color: #30475e;
+}
+
+#backPageButton > i:active {
+  color: #30475e;
+}
+
+.name-container > h1 {
+  font-size: 24px;
+  color: #fff;
+  margin: 0;
+}
+.switch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+}
+
+.switch-container > p {
+  position: relative;
+  top: 2px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #30475e;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #30475e;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+}
+
+#inputNameContainer {
+  display: none;
+  background-color: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  height: 200px;
+  width: 400px;
+  border-radius: 10px;
+  padding: 20px 20px;
+}
+
+#inputNameContainer > header {
+  color: #121212;
+}
+
+#inputNameContainer > section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#todoContainer > header {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  height: 70px;
+  padding: 20px;
+  background-color: #121212;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#inputNameContainer > section > input[type="text"],
+#todoContainer > header > input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  color: #333;
+}
+
+#inputNameContainer > section > button,
+#todoContainer > header > button {
+  height: 40px;
+  background-color: #f05454;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#inputNameContainer > section > button:hover,
+#todoContainer > header > button:hover {
+  background-color: #f04040;
+}
+
+#inputNameContainer > section > button > i {
+  margin-left: 10px;
+}
+
+#todoContainer {
+  display: none;
+  background-color: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  width: 500px;
+  border-radius: 10px;
+}
+
+#todoContainer > section {
+  padding: 20px;
+  height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+}
+
+.todoItem-left {
+  display: flex;
+}
+
+.todoItem-complete {
+  display: flex;
+  align-self: center;
+}
+
+.todoItem-complete > input {
+  margin-right: 20px;
+  height: 25px;
+  width: 25px;
+}
+
+.todoItem-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.todoItem-text {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 20px;
+  color: #121212;
+}
+
+.todoItem-control {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.edit {
+  position: relative;
+  margin-right: 10px;
+  top: 2px;
+}
+
+.save {
+  position: relative;
+  margin-right: 14px;
+  top: 2px;
+  display: none;
+}
+
+.todoItem-control-button {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  color: #30475e;
+}
+
+#spinner:not([hidden]) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#spinner::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  border: 2px solid #f3f3f3;
+  border-top: 3px solid #f25a41;
+  border-radius: 100%;
+  will-change: transform;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #userName {
+    font-size: 18px;
+  }
+  .switch-container > p {
+    display: none;
+  }
+  #inputNameContainer {
+    width: 350px;
+  }
+}
